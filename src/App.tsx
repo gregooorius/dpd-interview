@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import type { ShippingDataModel } from './ShippingDataModel'
 import axios, { AxiosError } from 'axios'
@@ -17,7 +17,7 @@ function App() {
     })
   }, [])
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
     const data = allShippingData.find((sd) => sd.trackingNumber === shippingNumber)
 
@@ -26,8 +26,8 @@ function App() {
     }
   }
 
-  function handleTextChange(event: any) {
-    setShippingNumber(event.target.value)
+  function handleTextChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setShippingNumber(event.currentTarget.value)
   }
   
   function handleReturnToSender() {
